@@ -4,6 +4,8 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
 import org.springframework.data.mongodb.repository.Update;
 
+import com.muniammamapicklesapi.muniammamapicklesapi.models.appuser.TempAppUserModel;
+
 
 public interface TempAuthRepository extends MongoRepository<TempAppUserModel,String> {
 

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import com.muniammamapicklesapi.muniammamapicklesapi.enums.response.ResponseEnums;
 import com.muniammamapicklesapi.muniammamapicklesapi.models.appuser.AppUserModel;
+import com.muniammamapicklesapi.muniammamapicklesapi.models.appuser.ResetPassword;
+import com.muniammamapicklesapi.muniammamapicklesapi.models.appuser.TempAppUserModel;
 import com.muniammamapicklesapi.muniammamapicklesapi.models.requestdtos.auth.ForgotPasswordRequestDTO;
 import com.muniammamapicklesapi.muniammamapicklesapi.models.requestdtos.auth.LoginRequesDTO;
 import com.muniammamapicklesapi.muniammamapicklesapi.models.requestdtos.auth.ResetPasswordRequestDTO;
@@ -94,10 +96,7 @@ public class AuthServices implements AuthImpl {
                     userData.setLastName(request.getLastName());
                     userData.setEmailId(request.getEmailId());
                     userData.setMobileNumber(request.getMobileNumber());
-                    userData.setRole(null);
-                    userData.setAccountStatus(AccountStatusEnum.PENDING);
                     userData.setOtp(null);
-                    userData.setUserName(authUtils.generateRandoUsername(request.getFirstName()));
                     userData.setFirstTimeLogin(true);
                     if (request.isGoogleSignUp()) {
                         userData.setGoogleSignUp(true);

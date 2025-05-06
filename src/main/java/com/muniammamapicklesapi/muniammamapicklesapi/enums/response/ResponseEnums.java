@@ -1,0 +1,19 @@
+package com.muniammamapicklesapi.muniammamapicklesapi.enums.response;
+
+public enum ResponseEnums {
+    SUCCESS,
+    ERROR,
+    UNAUTHORIZED,
+    BAD_REQUEST,
+    USER_EXISTS,
+    INVLAID_EMAIL_ID,
+    INVALID_MOBILE_NUMBER,
+    INTERNAL_SERVER_ERROR,
+    OTP_SENT,
+    INVALID_OTP,
+    USER_NOT_FOUND,
+    INVLAID_NAME,
+    INVALID_USER_LOGIN_TYPE_GOOGLE,
+    INVALID_USER_LOGIN_TYPE,
+    LINK_EXPIRED
+}

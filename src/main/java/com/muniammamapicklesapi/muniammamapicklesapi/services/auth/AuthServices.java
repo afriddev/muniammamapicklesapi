@@ -5,15 +5,12 @@ import java.time.LocalDateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.muniammamapicklesapi.muniammamapicklesapi.enums.AccountStatusEnum;
 import com.muniammamapicklesapi.muniammamapicklesapi.enums.response.ResponseEnums;
 import com.muniammamapicklesapi.muniammamapicklesapi.models.appuser.AppUserModel;
 import com.muniammamapicklesapi.muniammamapicklesapi.models.requestdtos.auth.ForgotPasswordRequestDTO;
 import com.muniammamapicklesapi.muniammamapicklesapi.models.requestdtos.auth.LoginRequesDTO;
 import com.muniammamapicklesapi.muniammamapicklesapi.models.requestdtos.auth.ResetPasswordRequestDTO;
 import com.muniammamapicklesapi.muniammamapicklesapi.models.requestdtos.auth.SignUpRequestDTO;
-import com.muniammamapicklesapi.muniammamapicklesapi.models.utils.ResetPassword;
-import com.muniammamapicklesapi.muniammamapicklesapi.models.utils.TempAppUserModel;
 import com.muniammamapicklesapi.muniammamapicklesapi.repository.AuthRepository;
 import com.muniammamapicklesapi.muniammamapicklesapi.repository.TempAuthRepository;
 import com.muniammamapicklesapi.muniammamapicklesapi.services.EmailServices;

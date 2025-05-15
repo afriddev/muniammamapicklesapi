@@ -26,11 +26,12 @@ public class ProductModel {
     private boolean isAvailable;
     private boolean isOutOfStock;
     private String editedBy;
-    private List<String> imageUrls;
-    private String title;
+    private String imageUrl;
+    private String imageDeleteUrl;
     private String description;
     private List<String> ingredients;
-    private List<String> others;
+    private long orders;
+    private String pickleType;
 
     @CreatedDate
     private Instant createdAt;

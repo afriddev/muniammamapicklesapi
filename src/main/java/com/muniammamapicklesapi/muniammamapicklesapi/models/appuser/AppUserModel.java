@@ -6,6 +6,8 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.muniammamapicklesapi.muniammamapicklesapi.enums.response.RoleEnums;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,6 +34,7 @@ public class AppUserModel {
     ResetPassword resetPassword;
     private String ca;
     private String ck;
+    private RoleEnums role = RoleEnums.USER;
     @CreatedDate
     private Instant createdAt;
 

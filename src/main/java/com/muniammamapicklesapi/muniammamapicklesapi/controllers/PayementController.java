@@ -1,31 +1,47 @@
 package com.muniammamapicklesapi.muniammamapicklesapi.controllers;
 
-import com.razorpay.Order;
-import com.razorpay.RazorpayClient;
-import org.json.JSONObject;
+
+import com.muniammamapicklesapi.muniammamapicklesapi.models.requestdtos.payment.CreatePaymentDTO;
+import com.muniammamapicklesapi.muniammamapicklesapi.models.responsedtos.payment.CreatePaymentResponseDTO;
+
 import org.springframework.web.bind.annotation.*;
 
+import com.muniammamapicklesapi.muniammamapicklesapi.services.payment.PaymentService;
+
 @RestController
-@RequestMapping("/api/orders")
+@RequestMapping("/api/order")
 public class PayementController {
 
-    @PostMapping("/create")
-    public String createOrder(@RequestParam int amount) {
-        try {
-            RazorpayClient razorpay = new RazorpayClient("rzp_live_CpXLAO0ri39J18", "AIfH9G9L1dL3hGoJyr5TrXwT");
+    @AutoWired
+    PaymentService paymentService;
 
-            JSONObject orderRequest = new JSONObject();
-            orderRequest.put("amount", amount * 100); // amount in paise
-            orderRequest.put("currency", "INR");
-            orderRequest.put("receipt", "order_rcptid_11");
-            orderRequest.put("payment_capture", true);
+    // @PostMapping("/create")
+    // public String createOrder(@RequestParam int amount) {
+    // try {
+    // RazorpayClient razorpay = new RazorpayClient("rzp_live_CpXLAO0ri39J18",
+    // "AIfH9G9L1dL3hGoJyr5TrXwT");
 
-            Order order = razorpay.orders.create(orderRequest);
-            return order.toString(); // You can return order.get("id") if you just want the order_id
-        } catch (Exception e) {
-            e.printStackTrace();
-            return "{\"error\": \"Order creation failed\"}";
-        }
+    // JSONObject orderRequest = new JSONObject();
+    // orderRequest.put("amount", amount * 100); // amount in paise
+    // orderRequest.put("currency", "INR");
+    // orderRequest.put("receipt", "order_rcptid_11");
+    // orderRequest.put("payment_capture", true);
+
+    // Order order = razorpay.orders.create(orderRequest);
+    // return order.toString(); // You can return order.get("id") if you just want
+    // } catch (Exception e) {
+    // e.printStackTrace();
+    // return "{\"error\": \"Order creation failed\"}";
+    // }
+    // }
+
+    @PostMapping
+    public CreatePaymentResponseDTO createPaymentOrder(@RequestBody CreatePaymentDTO request) {
+
+        PaymentService paymentService = new PaymentService();
+
+        paymentService.createPayment(request);
+
     }
 
 }

@@ -31,5 +31,10 @@ public interface AuthRepository extends MongoRepository<AppUserModel, String> {
     @Query("{ 'emailId' : ?0 }")
     @Update("{ '$set' : { 'password' : ?1 } }")
     int findAndUpdatePassword(String emailId, String passwp);
+    
+    @Query("{ 'emailId' : ?0 }")
+    @Update("{ '$set' : { 'logged' : ?1 } }")
+    int findAndUpdateLoggedIn(String emailId, boolean loggedIn);
+
 
 }

@@ -82,13 +82,13 @@ public class AuthServices implements AuthImpl {
             } else {
                 boolean isValid;
 
-                if (request.isGoogleSignUp())
-                    isValid = true;
-                else if (request.getOtp().toString().equals(tempUser.getOtp().toString()))
-                    isValid = true;
-
-                else
+                if (request.isGoogleSignUp()) {
+                    isValid = true; 
+                }else if (request.getOtp().toString().equals(tempUser.getOtp().toString())) {
+                    isValid = true; 
+                }else {
                     isValid = false;
+                }
 
                 if (isValid) {
                     AppUserModel userData = new AppUserModel();
@@ -181,8 +181,9 @@ public class AuthServices implements AuthImpl {
 
                 } else {
                     AppUserModel userData = authRepo.findByEmailId(request.getEmailId());
-                    System.err.println(userData.toString());
                     if (userData.getOtp().toString().equals(request.getOtp().toString())) {
+
+                        authRepo.findAndUpdateLoggedIn(userData.getEmailId(), true);
                         return ResponseEnums.SUCCESS;
                     } else {
                         return ResponseEnums.INVALID_OTP;
@@ -206,13 +207,11 @@ public class AuthServices implements AuthImpl {
             }
 
             AppUserModel user = authRepo.findByEmailId(request.getEmailId());
-            if (user == null)
-                return ResponseEnums.USER_NOT_FOUND;
-            else if (user.isGoogleSignUp()) {
+            if (user == null) {
+                return ResponseEnums.USER_NOT_FOUND; 
+            }else if (user.isGoogleSignUp()) {
                 return ResponseEnums.INVALID_USER_LOGIN_TYPE;
-            }
-
-            else if (user != null) {
+            } else if (user != null) {
                 String token = authUtils.generateRandomToken(20);
                 ResetPassword resetPassword = new ResetPassword();
                 resetPassword.setEmailId(request.getEmailId());

@@ -34,6 +34,7 @@ public class AppUserModel {
     ResetPassword resetPassword;
     private String ca;
     private String ck;
+    private boolean islLoggedIn;
     private RoleEnums role = RoleEnums.USER;
     @CreatedDate
     private Instant createdAt;

@@ -11,6 +11,7 @@ import java.time.ZonedDateTime;
 import java.util.Base64;
 import java.util.Date;
 import java.util.Random;
+import java.util.UUID;
 
 public class AuthUtils {
 
@@ -54,5 +55,11 @@ public class AuthUtils {
         firstName = firstName.trim().toLowerCase().replaceAll("[^a-z]", "");
         int randomNum = 10000 + new Random().nextInt(900000000); 
         return firstName + "-" + randomNum;
+    }
+    public  String generateReceiptId() {
+        String prefix = "rcpt_";
+        String randomPart = UUID.randomUUID().toString().replaceAll("-", "").substring(0, 10);
+        long timestamp = System.currentTimeMillis();
+        return prefix + randomPart + "_" + timestamp;
     }
 }

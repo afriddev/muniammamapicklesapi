@@ -83,16 +83,16 @@ public class AuthServices implements AuthImpl {
                 boolean isValid;
 
                 if (request.isGoogleSignUp()) {
-                    isValid = true; 
-                }else if (request.getOtp().toString().equals(tempUser.getOtp().toString())) {
-                    isValid = true; 
-                }else {
+                    isValid = true;
+                } else if (request.getOtp().toString().equals(tempUser.getOtp().toString())) {
+                    isValid = true;
+                } else {
                     isValid = false;
                 }
 
                 if (isValid) {
                     AppUserModel userData = new AppUserModel();
-                    userData.setFirstName(request.getFirstName());
+                    userData.setFirstName(request.getFirstName() + " " + request.getLastName());
                     userData.setLastName(request.getLastName());
                     userData.setEmailId(request.getEmailId());
                     userData.setMobileNumber(request.getMobileNumber());
@@ -150,7 +150,6 @@ public class AuthServices implements AuthImpl {
                     SignUpRequestDTO signUpRequest = new SignUpRequestDTO();
                     signUpRequest.setEmailId(request.getEmailId());
                     signUpRequest.setGoogleSignUp(true);
-                    signUpRequest.setProfileUrl(request.getProfileUrl());
                     signUpRequest.setFirstName(request.getFirstName());
 
                     return signUPImpl(signUpRequest);
@@ -208,8 +207,8 @@ public class AuthServices implements AuthImpl {
 
             AppUserModel user = authRepo.findByEmailId(request.getEmailId());
             if (user == null) {
-                return ResponseEnums.USER_NOT_FOUND; 
-            }else if (user.isGoogleSignUp()) {
+                return ResponseEnums.USER_NOT_FOUND;
+            } else if (user.isGoogleSignUp()) {
                 return ResponseEnums.INVALID_USER_LOGIN_TYPE;
             } else if (user != null) {
                 String token = authUtils.generateRandomToken(20);

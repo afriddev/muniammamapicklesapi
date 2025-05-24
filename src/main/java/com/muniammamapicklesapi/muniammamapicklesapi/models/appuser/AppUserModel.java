@@ -28,6 +28,7 @@ public class AppUserModel {
     private String password;
     private String mobileNumber;
     private Integer otp;
+    private String bio;
     private boolean googleSignUp;
     private String profileUrl;
     private boolean firstTimeLogin = true;
@@ -36,6 +37,7 @@ public class AppUserModel {
     private String ck;
     private boolean islLoggedIn;
     private RoleEnums role = RoleEnums.USER;
+    AddressModel address;
     @CreatedDate
     private Instant createdAt;
 

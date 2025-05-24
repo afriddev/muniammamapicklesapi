@@ -1,9 +1,11 @@
 package com.muniammamapicklesapi.muniammamapicklesapi.controllers;
 
-
+import com.muniammamapicklesapi.muniammamapicklesapi.models.requestdtos.payment.ConfirmPaymentRequestDTO;
 import com.muniammamapicklesapi.muniammamapicklesapi.models.requestdtos.payment.CreatePaymentDTO;
+import com.muniammamapicklesapi.muniammamapicklesapi.models.responsedtos.payment.ConfirmPaymentResponseDTO;
 import com.muniammamapicklesapi.muniammamapicklesapi.models.responsedtos.payment.CreatePaymentResponseDTO;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import com.muniammamapicklesapi.muniammamapicklesapi.services.payment.PaymentService;
@@ -12,7 +14,6 @@ import com.muniammamapicklesapi.muniammamapicklesapi.services.payment.PaymentSer
 @RequestMapping("/api/order")
 public class PayementController {
 
-    @AutoWired
     PaymentService paymentService;
 
     // @PostMapping("/create")
@@ -35,12 +36,21 @@ public class PayementController {
     // }
     // }
 
-    @PostMapping
+    @PostMapping("/create")
     public CreatePaymentResponseDTO createPaymentOrder(@RequestBody CreatePaymentDTO request) {
 
         PaymentService paymentService = new PaymentService();
 
-        paymentService.createPayment(request);
+        return paymentService.createPayment(request);
+
+    }
+
+    @PostMapping("/verify")
+    public ConfirmPaymentResponseDTO createPaymentOrder(@RequestBody ConfirmPaymentRequestDTO request) {
+
+        PaymentService paymentService = new PaymentService();
+
+        return paymentService.confirmPayemnt(request);
 
     }
 

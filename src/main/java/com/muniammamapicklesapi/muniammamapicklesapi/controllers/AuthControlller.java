@@ -55,7 +55,7 @@ public class AuthControlller {
         if (loginImplResposne == ResponseEnums.SUCCESS) {
             AppUserModel userData = authRepo.findByEmailId(request.getEmailId());
             if (userData != null) {
-                response.setFirstTimeLogin((userData.isFirstTimeLogin()));
+                response.setAddressFilled((userData.getAddress() == null));
             }
         }
         return response;
